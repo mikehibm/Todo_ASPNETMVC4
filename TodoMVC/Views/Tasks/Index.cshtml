@@ -19,6 +19,11 @@
 
 <h1>@ViewBag.Title</h1>
 
+<p>
+    <input type="text" id="title" />
+    <input type="button" id="addTask" value="追加" />
+</p>
+
 <ul id="tasks">
     @foreach (var item in Model) {
         <li id="task_@item.id" data-id="@item.id">
@@ -34,6 +39,16 @@
 @section scripts{
     <script>
         $(function () {
+
+            $('#title').focus();
+
+            $('#addTask').click(function () {
+                var title = $('#title').val();
+                $.post('@Url.Action("AjaxAddTask")', {
+                    title: title
+                }, function (rs) {
+                });
+            });
 
             $(document).on('click', '.editTask', function () {
                 var id = $(this).parent().data("id");
@@ -61,7 +76,6 @@
                         );
                     $('#task_' + id).empty().append(e).find('span:eq(0)').text(title);
                 });
-
             });
 
             $('#tasks').sortable({
