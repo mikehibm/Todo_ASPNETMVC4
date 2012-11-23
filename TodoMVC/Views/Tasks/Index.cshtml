@@ -6,7 +6,7 @@
 }
 
 <style scoped>
-    .deleteTask {
+    .deleteTask, .drag {
         cursor: pointer;
         color: blue;
     }
@@ -19,18 +19,30 @@
 
 <h1>@ViewBag.Title</h1>
 
-<ul>
+<ul id="tasks">
     @foreach (var item in Model) {
         <li id="task_@item.id" data-id="@item.id">
             <input type="checkbox" class="checkTask" @(item.type == Task.TYPE_DONE ? "checked" : "") />
             <span class="@item.type">@Html.DisplayFor(modelItem => item.title)</span>
             <span class="deleteTask">[削除]</span>
+            <span class="drag">[drag]</span>
         </li>
     }
 </ul>
 
 @section scripts{
     <script>
+        $('#tasks').sortable({
+            axis: 'y',
+            opacity: 0.2,
+            handle: '.drag',
+            update: function () {
+                $.post('@Url.Action("AjaxSortTask")', {
+                    task: $(this).sortable('serialize')
+                });
+            }
+        });
+
         $(function () {
             $(document).on('click', '.checkTask', function () {
                 var id = $(this).parent().data("id");

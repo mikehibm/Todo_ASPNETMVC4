@@ -58,5 +58,11 @@ namespace TodoMVC.Controllers {
 
             return Json(null);
         }
+
+        [HttpPost]
+        public ActionResult AjaxSortTask() {
+            var context = new TodoEntities();
+            return Json(null);
+        }
     }
 }
