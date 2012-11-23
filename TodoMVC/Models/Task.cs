@@ -14,8 +14,10 @@ namespace TodoMVC.Models {
 
         public int seq { get; set; }
 
+        [StringLength(10)]
         public string type { get; set; }        //'notyet', 'done', 'deleted'
 
+        [StringLength(200)]
         public string title { get; set; }
 
         public DateTime created { get; set; }

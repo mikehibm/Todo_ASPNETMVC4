@@ -139,6 +139,14 @@
     <Compile Include="Migrations\201211230318130_CreateIndex_Tasks_Seq.Designer.cs">
       <DependentUpon>201211230318130_CreateIndex_Tasks_Seq.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201211230408284_AddIndex_Tasks_Type.cs" />
+    <Compile Include="Migrations\201211230408284_AddIndex_Tasks_Type.Designer.cs">
+      <DependentUpon>201211230408284_AddIndex_Tasks_Type.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201211230413417_CreateIndex_Tasks_type.cs" />
+    <Compile Include="Migrations\201211230413417_CreateIndex_Tasks_type.Designer.cs">
+      <DependentUpon>201211230413417_CreateIndex_Tasks_type.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Task.cs" />
     <Compile Include="Models\TodoEntities.cs" />
@@ -243,6 +251,12 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201211230318130_CreateIndex_Tasks_Seq.resx">
       <DependentUpon>201211230318130_CreateIndex_Tasks_Seq.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201211230408284_AddIndex_Tasks_Type.resx">
+      <DependentUpon>201211230408284_AddIndex_Tasks_Type.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201211230413417_CreateIndex_Tasks_type.resx">
+      <DependentUpon>201211230413417_CreateIndex_Tasks_type.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
