@@ -47,6 +47,17 @@
                 $.post('@Url.Action("AjaxAddTask")', {
                     title: title
                 }, function (rs) {
+                    var e = $(
+                            '<li id="task_' + rs + '" data-id="' + rs + '">' +
+                            '<input type="checkbox" class="checkTask" >' +
+                            '<span></span> ' +
+                            '<span class="editTask">[編集]</span> ' +
+                            '<span class="deleteTask">[削除]</span> ' +
+                            '<span class="drag">[drag]</span>' +
+                            '</li>'
+                        );
+                    $('#tasks').append(e).find('li:last span:eq(0)').text(title);
+                    $('#title').val().focus();
                 });
             });
 

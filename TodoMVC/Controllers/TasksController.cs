@@ -91,5 +91,21 @@ namespace TodoMVC.Controllers {
 
             return Json(null);
         }
+
+        [HttpPost]
+        public ActionResult AjaxAddTask(string title) {
+            var context = new TodoEntities();
+
+            var task = new Task();
+            task.seq = 0;
+            task.type = Task.TYPE_NOTYET;
+            task.title = title;
+            task.created = DateTime.Now;
+            task.modified = task.created;
+
+            //context.SaveChanges();
+
+            return Json(task.id);
+        }
     }
 }
