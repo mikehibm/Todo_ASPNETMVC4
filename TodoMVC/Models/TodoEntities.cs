@@ -11,5 +11,7 @@ namespace TodoMVC.Models {
         public TodoEntities()
             : base("DefaultConnection") {
         }
+
+        public DbSet<Task> Tasks { get; set; }
     }
 }

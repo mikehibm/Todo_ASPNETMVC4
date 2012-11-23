@@ -1,31 +1,25 @@
-namespace TodoMVC.Migrations
-{
-    using System;
-    using System.Data.Entity;
-    using System.Data.Entity.Migrations;
-    using System.Linq;
+using System;
+using System.Data.Entity;
+using System.Data.Entity.Migrations;
+using System.Linq;
+using TodoMVC.Models;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<TodoMVC.Models.TodoEntities>
-    {
-        public Configuration()
-        {
-            AutomaticMigrationsEnabled = false;
+namespace TodoMVC.Migrations {
+
+    internal sealed class Configuration : DbMigrationsConfiguration<TodoMVC.Models.TodoEntities> {
+
+        public Configuration() {
+            AutomaticMigrationsEnabled = true;
+            AutomaticMigrationDataLossAllowed = true;
         }
 
-        protected override void Seed(TodoMVC.Models.TodoEntities context)
-        {
-            //  This method will be called after migrating to the latest version.
-
-            //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
-            //  to avoid creating duplicate seed data. E.g.
-            //
-            //    context.People.AddOrUpdate(
-            //      p => p.FullName,
-            //      new Person { FullName = "Andrew Peters" },
-            //      new Person { FullName = "Brice Lambson" },
-            //      new Person { FullName = "Rowan Miller" }
-            //    );
-            //
+        protected override void Seed(TodoMVC.Models.TodoEntities context) {
+            context.Tasks.AddOrUpdate(
+                    t => t.id,
+                    new Task { seq = 1, type = "notyet", title = "Test 1", created = DateTime.Now, modified = DateTime.Now },
+                    new Task { seq = 2, type = "notyet", title = "Test 2222", created = DateTime.Now, modified = DateTime.Now },
+                    new Task { seq = 3, type = "notyet", title = "Test 3333333333", created = DateTime.Now, modified = DateTime.Now }
+                );
         }
     }
 }
