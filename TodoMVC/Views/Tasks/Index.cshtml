@@ -4,12 +4,30 @@
     ViewBag.Title = "TODOアプリ";
 }
 
+<style scoped>
+    .deleteTask {
+        cursor: pointer;
+        color: blue;
+    }
+</style>
+
 <h1>@ViewBag.Title</h1>
 
 <ul>
     @foreach (var item in Model) {
         <li>
             @Html.DisplayFor(modelItem => item.title)
+            <span class="deleteTask">[削除]</span>
         </li>
     }
 </ul>
+
+<script>
+    $(function () {
+        $(document).on('click', '.deleteTask', function () {
+            if (confirm('本当に削除しますか？')) {
+
+            }
+        });
+    });
+</script>
