@@ -15,19 +15,26 @@
 
 <ul>
     @foreach (var item in Model) {
-        <li>
+        <li id="task_@item.id" data-id="@item.id">
             @Html.DisplayFor(modelItem => item.title)
             <span class="deleteTask">[削除]</span>
         </li>
     }
 </ul>
 
-<script>
-    $(function () {
-        $(document).on('click', '.deleteTask', function () {
-            if (confirm('本当に削除しますか？')) {
-
-            }
+@section scripts{
+    <script>
+        $(function () {
+            $(document).on('click', '.deleteTask', function () {
+                if (confirm('本当に削除しますか？')) {
+                    var id = $(this).parent().data("id");
+                    $.post('@Url.Action("AjaxDeleteTask")', {
+                        id: id
+                    }, function (rs) {
+                        $('#task_' + id).fadeOut(800);
+                    });
+                }
+            });
         });
-    });
-</script>
+    </script>
+}

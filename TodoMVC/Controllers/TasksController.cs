@@ -21,5 +21,10 @@ namespace TodoMVC.Controllers {
 
             return View(list);
         }
+
+        [HttpPost]
+        public ActionResult AjaxDeleteTask() {
+            return Json(null);
+        }
     }
 }
