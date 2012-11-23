@@ -6,7 +6,7 @@
 }
 
 <style scoped>
-    .deleteTask, .drag {
+    .deleteTask, .drag, .editTask {
         cursor: pointer;
         color: blue;
     }
@@ -24,6 +24,7 @@
         <li id="task_@item.id" data-id="@item.id">
             <input type="checkbox" class="checkTask" @(item.type == Task.TYPE_DONE ? "checked" : "") />
             <span class="@item.type">@Html.DisplayFor(modelItem => item.title)</span>
+            <span class="@(item.type == Task.TYPE_DONE ? "" : "editTask") ">[編集]</span>
             <span class="deleteTask">[削除]</span>
             <span class="drag">[drag]</span>
         </li>
@@ -32,18 +33,25 @@
 
 @section scripts{
     <script>
-        $('#tasks').sortable({
-            axis: 'y',
-            opacity: 0.2,
-            handle: '.drag',
-            update: function () {
-                $.post('@Url.Action("AjaxSortTask")', {
-                    task: $(this).sortable('serialize')
-                });
-            }
-        });
-
         $(function () {
+
+            $(document).on('click', '.editTask', function () {
+                var id = $(this).parent().data("id");
+                var title = $(this).prev().text();
+                alert(title);
+            });
+
+            $('#tasks').sortable({
+                axis: 'y',
+                opacity: 0.2,
+                handle: '.drag',
+                update: function () {
+                    $.post('@Url.Action("AjaxSortTask")', {
+                        task: $(this).sortable('serialize')
+                    });
+                }
+            });
+
             $(document).on('click', '.checkTask', function () {
                 var id = $(this).parent().data("id");
                 var title = $(this).next();
