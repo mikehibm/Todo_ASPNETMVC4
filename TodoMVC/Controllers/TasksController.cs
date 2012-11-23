@@ -60,8 +60,19 @@ namespace TodoMVC.Controllers {
         }
 
         [HttpPost]
-        public ActionResult AjaxSortTask() {
+        public ActionResult AjaxSortTask(string task) {
+            var task_ids = HttpUtility.ParseQueryString(task);
+            var task_list = task_ids[0].Split(",".ToCharArray());
+
             var context = new TodoEntities();
+
+            for (int i = 0; i < task_list.Length; i++) {
+                int id = Int32.Parse(task_list[i]);
+                var item = context.Tasks.Find(id);
+                item.seq = i;
+            }
+            context.SaveChanges();
+
             return Json(null);
         }
     }
