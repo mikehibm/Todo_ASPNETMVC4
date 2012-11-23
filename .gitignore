@@ -29,7 +29,10 @@ packages*/
 # Publish Web Output
 *.Publish.xml
 
-# ActiveReports Licens file
+# License file
 *.licx
 
+# Local databases
+*.mdf
+*.ldf
 

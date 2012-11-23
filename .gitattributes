@@ -45,9 +45,10 @@
 *.rtf	 diff=astextplain
 *.RTF	 diff=astextplain
 
-*.jpg   binary
+*.jpg  binary
 *.png  binary
 *.gif  binary
 *.ico  binary
-*.bmp binary
-
+*.bmp  binary
+*.mdf  binary
+*.ldf  binary
