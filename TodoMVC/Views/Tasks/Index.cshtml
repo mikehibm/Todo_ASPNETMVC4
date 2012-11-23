@@ -34,6 +34,16 @@
         $(function () {
             $(document).on('click', '.checkTask', function () {
                 var id = $(this).parent().data("id");
+                var title = $(this).next();
+                $.post('@Url.Action("AjaxCheckTask")', {
+                    id: id
+                }, function (rs) {
+                    if (title.hasClass('done')) {
+                        title.removeClass('done');
+                    } else {
+                        title.addClass('done');
+                    }
+                });
             });
 
             $(document).on('click', '.deleteTask', function () {

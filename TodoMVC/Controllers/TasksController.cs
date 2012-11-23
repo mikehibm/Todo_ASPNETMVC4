@@ -37,5 +37,26 @@ namespace TodoMVC.Controllers {
 
             return Json(null);
         }
+
+        [HttpPost]
+        public ActionResult AjaxCheckTask(int id) {
+            var context = new TodoEntities();
+            var task = context.Tasks.Find(id);
+            if (task == null) {
+                return HttpNotFound();
+            }
+
+            if (task.type == Task.TYPE_DONE) {
+                task.type = Task.TYPE_NOTYET;
+            }
+            else {
+                task.type = Task.TYPE_DONE;
+            }
+            task.modified = DateTime.Now;
+
+            context.SaveChanges();
+
+            return Json(null);
+        }
     }
 }
