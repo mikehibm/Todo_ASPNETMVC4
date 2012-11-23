@@ -82,9 +82,11 @@
                     id: id
                 }, function (rs) {
                     if (title.hasClass('done')) {
-                        title.removeClass('done');
+                        title.removeClass('done')
+                            .next().addClass("editTask");
                     } else {
-                        title.addClass('done');
+                        title.addClass('done')
+                            .next().removeClass("editTask");
                     }
                 });
             });
