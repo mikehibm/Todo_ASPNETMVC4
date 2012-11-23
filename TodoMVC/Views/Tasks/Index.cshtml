@@ -46,6 +46,21 @@
             });
 
             $(document).on('click', '.updateTask', function () {
+                var id = $(this).parent().data("id");
+                var title = $(this).prev().val();
+                $.post('@Url.Action("AjaxEditTask")', {
+                    id: id,
+                    title: title
+                }, function (rs) {
+                    var e = $(
+                            '<input type="checkbox" class="checkTask" >' +
+                            '<span></span> ' +
+                            '<span class="editTask">[編集]</span> ' +
+                            '<span class="deleteTask">[削除]</span> ' +
+                            '<span class="drag">[drag]</span>'
+                        );
+                    $('#task_' + id).empty().append(e).find('span:eq(0)').text(title);
+                });
 
             });
 
