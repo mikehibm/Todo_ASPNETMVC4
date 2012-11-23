@@ -8,6 +8,9 @@ using System.Web;
 namespace TodoMVC.Models {
 
     public class Task {
+        public const string TYPE_NOTYET = "notyet";
+        public const string TYPE_DONE = "done";
+        public const string TYPE_DELETED = "deleted";
 
         [Key]
         public int id { get; set; }

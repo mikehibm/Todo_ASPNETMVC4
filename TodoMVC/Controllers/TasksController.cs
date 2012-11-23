@@ -15,7 +15,7 @@ namespace TodoMVC.Controllers {
         public ActionResult Index() {
             var context = new TodoEntities();
             var list = context.Tasks
-                        .Where(t => t.type != "deleted")
+                        .Where(t => t.type != Task.TYPE_DELETED)
                         .OrderBy(t => t.seq)
                         .ToList();
 
@@ -23,7 +23,19 @@ namespace TodoMVC.Controllers {
         }
 
         [HttpPost]
-        public ActionResult AjaxDeleteTask() {
+        public ActionResult AjaxDeleteTask(int id) {
+            var context = new TodoEntities();
+            var task = context.Tasks.Find(id);
+            if (task == null) {
+                return HttpNotFound();
+            }
+
+            task.type = Task.TYPE_DELETED;
+            task.modified = DateTime.Now;
+
+            context.Entry<Task>(task).State = System.Data.Entity.EntityState.Modified;
+            context.SaveChanges();
+
             return Json(null);
         }
     }
