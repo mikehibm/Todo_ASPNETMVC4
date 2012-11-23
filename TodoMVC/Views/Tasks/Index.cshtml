@@ -38,7 +38,15 @@
             $(document).on('click', '.editTask', function () {
                 var id = $(this).parent().data("id");
                 var title = $(this).prev().text();
-                alert(title);
+                $('#task_' + id)
+                    .empty()
+                    .append($('<input type="text">').val(title))
+                    .append('<input type="button" value="更新" class="updateTask">');
+                $('#task_' + id + ' input:eq[0]').focus();
+            });
+
+            $(document).on('click', '.updateTask', function () {
+
             });
 
             $('#tasks').sortable({
