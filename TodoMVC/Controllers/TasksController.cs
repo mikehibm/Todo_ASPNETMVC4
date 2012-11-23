@@ -96,14 +96,17 @@ namespace TodoMVC.Controllers {
         public ActionResult AjaxAddTask(string title) {
             var context = new TodoEntities();
 
+            var max_seq = context.Tasks.Max(t => t.seq);
+
             var task = new Task();
-            task.seq = 0;
+            task.seq = max_seq + 1;
             task.type = Task.TYPE_NOTYET;
             task.title = title;
             task.created = DateTime.Now;
             task.modified = task.created;
 
-            //context.SaveChanges();
+            context.Tasks.Add(task);
+            context.SaveChanges();
 
             return Json(task.id);
         }
