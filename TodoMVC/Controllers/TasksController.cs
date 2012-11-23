@@ -33,7 +33,6 @@ namespace TodoMVC.Controllers {
             task.type = Task.TYPE_DELETED;
             task.modified = DateTime.Now;
 
-            context.Entry<Task>(task).State = System.Data.Entity.EntityState.Modified;
             context.SaveChanges();
 
             return Json(null);
